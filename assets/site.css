@@ -1,0 +1,108 @@
+/* PlayPup website — the app's look: green gradient, lime accent, gold for rewards, Nunito. */
+@font-face { font-family: 'Nunito'; font-weight: 600; font-display: swap; src: url('fonts/Nunito_600SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Nunito'; font-weight: 800; font-display: swap; src: url('fonts/Nunito_800ExtraBold.ttf') format('truetype'); }
+
+:root {
+  --top: #3f8650; --mid: #1c4c3a; --bot: #0c261e;
+  --lime: #cbe85c; --lime-light: #eaf8b0; --cream: #faf3e6; --gold: #f6b93b; --gold-text: #fbd57a;
+  --ink: #ffffff; --muted: rgba(255, 255, 255, 0.82); --card: rgba(255, 255, 255, 0.06); --line: rgba(255, 255, 255, 0.12);
+  --on-lime: #0b2a1b;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { background: var(--bot); }
+body {
+  margin: 0; min-height: 100vh; color: var(--ink); background: linear-gradient(180deg, var(--top) 0, var(--mid) 520px, var(--bot) 1400px) no-repeat, var(--bot);
+  font: 600 17px/1.6 'Nunito', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--lime); text-underline-offset: 3px; }
+a:hover { color: var(--lime-light); }
+:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-weight: 800; line-height: 1.2; margin: 0; }
+.wrap { width: min(1040px, 100% - 40px); margin-inline: auto; }
+.narrow { width: min(760px, 100% - 40px); margin-inline: auto; }
+
+/* Header */
+.site-header { padding-block: 18px; }
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 24px; color: var(--cream); }
+.brand img { width: 40px; height: 40px; border-radius: 10px; }
+.brand .wordmark span { color: var(--lime); }
+.nav { display: flex; gap: 18px; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-weight: 800; font-size: 15px; padding: 6px 2px; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+
+/* Home hero */
+.hero { text-align: center; padding-block: 8px 40px; }
+.hero .logo {
+  width: min(440px, 88%); margin: 0 auto -10px;
+  /* Fade the artwork's own background into the page on the left and right. */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+}
+.hero h1 { font-size: clamp(30px, 5.4vw, 48px); color: var(--lime-light); margin-top: 6px; }
+.hero p.lead { font-size: clamp(17px, 2.3vw, 20px); color: var(--muted); max-width: 620px; margin: 14px auto 0; }
+.badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 99px;
+  border: 1.5px solid var(--line); background: rgba(0, 0, 0, 0.2); color: var(--muted); font-weight: 800; font-size: 15px;
+}
+.badge strong { color: var(--ink); }
+.btn {
+  display: inline-block; padding: 14px 26px; border-radius: 99px; font-weight: 800; text-decoration: none;
+  background: linear-gradient(180deg, #dcf283, #a9cf3a); color: var(--on-lime);
+}
+.btn:hover { color: var(--on-lime); filter: brightness(1.05); }
+
+/* Sections */
+section { padding-block: 34px; }
+.section-title { text-align: center; font-size: clamp(26px, 4vw, 34px); }
+.section-sub { text-align: center; color: var(--muted); max-width: 640px; margin: 10px auto 0; }
+.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-top: 26px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 22px; }
+.card .emoji { font-size: 30px; line-height: 1; }
+.card h3 { font-size: 19px; margin-top: 12px; }
+.card p { color: var(--muted); margin: 6px 0 0; font-size: 15.5px; }
+
+.art { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); margin-top: 26px; }
+.art figure { margin: 0; text-align: center; }
+.art img { border-radius: 22px; border: 2px solid rgba(246, 185, 59, 0.6); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3); }
+.art figcaption { font-weight: 800; font-size: 14px; margin-top: 8px; color: var(--gold-text); }
+
+.premium { border: 1.5px solid var(--lime); background: rgba(203, 232, 92, 0.1); border-radius: 26px; padding: 28px; text-align: center; }
+.premium h2 { font-size: clamp(24px, 3.6vw, 30px); }
+.premium .plans { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 18px 0 6px; }
+.premium .plan { border: 1.5px solid var(--line); background: var(--card); border-radius: 18px; padding: 14px 20px; min-width: 210px; }
+.premium .plan b { display: block; font-size: 17px; }
+.premium .plan small { color: var(--gold-text); font-weight: 800; }
+.premium p { color: var(--muted); margin: 10px auto 0; max-width: 600px; }
+
+/* Text pages (privacy, terms, support) */
+.doc { padding-block: 16px 50px; }
+.doc h1 { font-size: clamp(30px, 5vw, 40px); }
+.doc .updated { color: var(--muted); margin-top: 6px; font-size: 15px; }
+.doc h2 { font-size: 22px; margin-top: 34px; }
+.doc h3 { font-size: 18px; margin-top: 22px; }
+.doc p, .doc li { color: rgba(255, 255, 255, 0.9); }
+.doc ul { padding-left: 22px; }
+.doc li + li { margin-top: 6px; }
+.callout { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--lime); border-radius: 14px; padding: 16px 18px; margin-top: 20px; }
+.callout p { margin: 0; }
+details { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 4px 18px; margin-top: 10px; }
+summary { cursor: pointer; font-weight: 800; padding-block: 12px; list-style-position: inside; }
+details[open] summary { color: var(--lime-light); }
+details p, details ol, details ul { margin-top: 0; }
+.contact { font-size: 20px; font-weight: 800; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); padding-block: 26px 40px; margin-top: 30px; color: var(--muted); font-size: 14.5px; }
+.site-footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.site-footer a { color: var(--muted); margin-right: 16px; }
+.site-footer a:hover { color: var(--ink); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .art img { transition: transform 0.2s; }
+  .art figure:hover img { transform: translateY(-3px) rotate(-1deg); }
+}
