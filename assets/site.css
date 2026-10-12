@@ -20,7 +20,7 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: var(--lime); text-underline-offset: 3px; }
 a:hover { color: var(--lime-light); }
 :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 6px; }
-h1, h2, h3 { font-weight: 800; line-height: 1.2; margin: 0; }
+h1, h2, h3 { font-weight: 800; line-height: 1.2; margin: 0; text-wrap: balance; }
 .wrap { width: min(1040px, 100% - 40px); margin-inline: auto; }
 .narrow { width: min(760px, 100% - 40px); margin-inline: auto; }
 
@@ -36,12 +36,14 @@ h1, h2, h3 { font-weight: 800; line-height: 1.2; margin: 0; }
 
 /* Home hero */
 .hero { text-align: center; padding-block: 8px 40px; }
-.hero .logo {
-  width: min(440px, 88%); margin: 0 auto -10px;
-  /* Fade the artwork's own background into the page on the left and right. */
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%);
+.hero .pup {
+  width: min(420px, 86%); margin: 0 auto;
+  /* Fade the artwork's own background softly into the page. */
+  -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 72%, transparent 100%);
 }
+.hero-wordmark { font-weight: 800; font-size: clamp(44px, 8vw, 64px); line-height: 1; letter-spacing: -0.01em; color: var(--cream); margin: -6px 0 18px; }
+.hero-wordmark span { color: var(--lime); }
 .hero h1 { font-size: clamp(30px, 5.4vw, 48px); color: var(--lime-light); margin-top: 6px; }
 .hero p.lead { font-size: clamp(17px, 2.3vw, 20px); color: var(--muted); max-width: 620px; margin: 14px auto 0; }
 .badges { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
@@ -57,27 +59,67 @@ h1, h2, h3 { font-weight: 800; line-height: 1.2; margin: 0; }
 .btn:hover { color: var(--on-lime); filter: brightness(1.05); }
 
 /* Sections */
-section { padding-block: 34px; }
-.section-title { text-align: center; font-size: clamp(26px, 4vw, 34px); }
+section { padding-block: 36px; }
+.section-title { text-align: center; font-size: clamp(26px, 4vw, 36px); }
 .section-sub { text-align: center; color: var(--muted); max-width: 640px; margin: 10px auto 0; }
-.grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-top: 26px; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 22px; }
-.card .emoji { font-size: 30px; line-height: 1; }
-.card h3 { font-size: 19px; margin-top: 12px; }
-.card p { color: var(--muted); margin: 6px 0 0; font-size: 15.5px; }
 
-.art { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); margin-top: 26px; }
-.art figure { margin: 0; text-align: center; }
-.art img { border-radius: 22px; border: 2px solid rgba(246, 185, 59, 0.6); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3); }
-.art figcaption { font-weight: 800; font-size: 14px; margin-top: 8px; color: var(--gold-text); }
+/* App showcase: the star of the page */
+.showcase { padding-block: 30px 46px; }
+.phones {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 3vw, 36px);
+  align-items: center; max-width: 900px; margin: 34px auto 0;
+}
+.phone-fig { margin: 0; text-align: center; }
+.phone {
+  border-radius: 38px; padding: 9px; background: #0a1f17;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(203, 232, 92, 0.06);
+}
+.phone img { border-radius: 30px; width: 100%; }
+.phone-fig.featured .phone { transform: scale(1.07); box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 60px rgba(203, 232, 92, 0.18); }
+.phone-fig figcaption { margin-top: 22px; color: var(--muted); font-size: 15px; line-height: 1.45; padding-inline: 6px; }
+.phone-fig figcaption b { display: block; color: var(--cream); font-size: 17px; margin-bottom: 2px; }
+@media (max-width: 720px) {
+  /* On phones: swipe through the screens. */
+  .phones {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%;
+    overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 14% 18px; margin-inline: -20px;
+    scrollbar-width: none;
+  }
+  .phones::-webkit-scrollbar { display: none; }
+  .phone-fig { scroll-snap-align: center; }
+  .phone-fig.featured .phone { transform: none; }
+}
 
-.premium { border: 1.5px solid var(--lime); background: rgba(203, 232, 92, 0.1); border-radius: 26px; padding: 28px; text-align: center; }
-.premium h2 { font-size: clamp(24px, 3.6vw, 30px); }
-.premium .plans { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 18px 0 6px; }
-.premium .plan { border: 1.5px solid var(--line); background: var(--card); border-radius: 18px; padding: 14px 20px; min-width: 210px; }
-.premium .plan b { display: block; font-size: 17px; }
-.premium .plan small { color: var(--gold-text); font-weight: 800; }
-.premium p { color: var(--muted); margin: 10px auto 0; max-width: 600px; }
+/* Why PlayPup: four glass cards */
+.benefits { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 28px; }
+.benefit {
+  padding: 26px 22px; border-radius: 24px; border: 1px solid var(--line);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.benefit .icon { width: 30px; height: 30px; fill: none; stroke: var(--lime); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.benefit h3 { font-size: 19px; margin-top: 16px; color: var(--cream); }
+.benefit p { color: var(--muted); margin: 8px 0 0; font-size: 15.5px; line-height: 1.5; }
+.privacy-line { display: flex; gap: 10px; align-items: center; justify-content: center; text-align: left; color: var(--muted); margin: 26px auto 0; max-width: 620px; font-size: 15.5px; }
+.privacy-line svg { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--lime); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.privacy-line strong { color: var(--cream); }
+
+/* Premium: compact, after the app story */
+.premium { border: 1px solid rgba(203, 232, 92, 0.45); background: rgba(203, 232, 92, 0.07); border-radius: 26px; padding: clamp(22px, 4vw, 32px); text-align: center; }
+.premium h2 { font-size: clamp(22px, 3.4vw, 28px); color: var(--cream); }
+.premium > p { color: var(--muted); margin: 10px auto 0; max-width: 560px; }
+.checks { list-style: none; padding: 0; margin: 18px auto 0; display: inline-grid; gap: 8px; text-align: left; }
+.checks li { padding-left: 28px; position: relative; }
+.checks li::before { content: ''; position: absolute; left: 2px; top: 6px; width: 14px; height: 8px; border-left: 2.5px solid var(--lime); border-bottom: 2.5px solid var(--lime); transform: rotate(-45deg); }
+.plans { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+.plan { position: relative; border: 1.5px solid var(--line); background: var(--card); border-radius: 18px; padding: 16px 20px; min-width: 230px; flex: 1 1 230px; max-width: 300px; }
+.plan b { display: block; font-size: 16.5px; }
+.plan small { color: var(--gold-text); font-weight: 800; font-size: 14px; }
+.plan small.plain { color: var(--muted); font-weight: 600; }
+.plan.best { border-color: var(--lime); background: rgba(203, 232, 92, 0.12); }
+.plan .tag { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); background: var(--lime); color: var(--on-lime); font-size: 12px; font-weight: 800; padding: 2px 10px; border-radius: 99px; white-space: nowrap; }
+.premium .trial { color: var(--muted); font-size: 14.5px; margin-top: 16px; }
 
 /* Text pages (privacy, terms, support) */
 .doc { padding-block: 16px 50px; }
@@ -102,7 +144,3 @@ details p, details ol, details ul { margin-top: 0; }
 .site-footer a { color: var(--muted); margin-right: 16px; }
 .site-footer a:hover { color: var(--ink); }
 
-@media (prefers-reduced-motion: no-preference) {
-  .art img { transition: transform 0.2s; }
-  .art figure:hover img { transform: translateY(-3px) rotate(-1deg); }
-}
