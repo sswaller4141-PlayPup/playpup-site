@@ -187,3 +187,13 @@ details p, details ol, details ul { margin-top: 0; }
 .site-footer a:hover { color: var(--ink); }
 
 .nowrap { white-space: nowrap; }
+.range-pills span { cursor: default; user-select: none; }
+.range-hint { margin: 0; color: var(--muted); font-size: 13.5px; text-align: center; }
+.plan small.billed { display: block; font-size: 13px; margin-top: 2px; }
+/* Tap to enlarge */
+.phone img, .chart-card img { cursor: zoom-in; }
+.zoom { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 92vh; overflow: visible; }
+.zoom::backdrop { background: rgba(4, 14, 10, 0.86); }
+.zoom img { display: block; max-width: 94vw; max-height: 88vh; width: auto; height: auto; border-radius: 22px; box-shadow: 0 20px 60px rgba(0,0,0,.6); cursor: zoom-out; }
+.zoom:not(.tall) img { width: min(720px, 94vw); }
+.zoom-close { position: absolute; top: -14px; right: -14px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: #0b2a1b; color: #fff; font-size: 18px; cursor: pointer; }

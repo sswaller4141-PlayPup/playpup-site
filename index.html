@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://playpup.app/assets/og-image.png">
   <meta property="og:url" content="https://playpup.app/">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="assets/site.css?v=7">
+  <link rel="stylesheet" href="assets/site.css?v=8">
 </head>
 <body>
   <header class="site-header">
@@ -132,16 +132,17 @@
         <h2 class="section-title" id="bigger-title">See the Bigger Picture</h2>
         <p class="section-sub">Discover how your playtime adds up over days, months, and years.</p>
         <!-- A preview of the range control inside each chart (not a working control). -->
-        <div class="range-preview" role="img" aria-label="Each chart can show 7 days for free, or 30 days, 90 days, 1 year and all time with Premium">
+        <div class="range-preview" role="img" aria-label="Preview of the range picker inside each chart: 7 days free; 30 days, 90 days, 1 year and all time with Premium. The Playtime Over Time chart below shows the 1 year view.">
           <p class="range-label"><span class="premium-tag">Premium</span> Explore your full history in every chart</p>
           <div class="range-pills" aria-hidden="true">
-            <span class="on">7D</span><span>30D</span><span>90D</span><span>1Y</span><span>All Time</span>
+            <span>7D</span><span>30D</span><span>90D</span><span class="on">1Y</span><span>All Time</span>
           </div>
+          <p class="range-hint">Preview of the range picker inside each chart. Below: Playtime Over Time, 1Y view.</p>
         </div>
         <div class="chart-grid">
           <figure class="chart-card">
             <figcaption><h3>Playtime Over Time</h3><p>Discover how your playtime changes and grows over time.</p></figcaption>
-            <img src="assets/charts/playtime.png?v=1" alt="Line chart of monthly playtime over the past year, rising toward this month" width="720" height="491" loading="lazy">
+            <img src="assets/charts/playtime.png?v=2" alt="Line chart of monthly playtime over the past year, rising toward this month" width="720" height="491" loading="lazy">
           </figure>
           <figure class="chart-card">
             <figcaption><h3>Day-of-Week Patterns</h3><p>Discover the days you play together most.</p></figcaption>
@@ -184,6 +185,7 @@
               <span class="tag">Best value</span>
               <b>Annual Premium: $44.99/year</b>
               <small>Save 25% · Just $3.75/month</small>
+              <small class="plain billed">Billed annually</small>
             </div>
             <div class="plan">
               <b>Monthly Premium: $4.99/month</b>
@@ -203,5 +205,24 @@
       <div>© 2026 ShaSum Ventures LLC</div>
     </div>
   </footer>
+  <dialog class="zoom" id="zoom" aria-label="Enlarged screenshot">
+    <img id="zoom-img" alt="">
+    <button type="button" class="zoom-close" aria-label="Close">✕</button>
+  </dialog>
+  <script>
+    // Tap or click a screenshot or chart to see it larger.
+    (function () {
+      var d = document.getElementById('zoom'), big = document.getElementById('zoom-img');
+      if (!d.showModal) return;
+      document.querySelectorAll('.phone img, .chart-card img').forEach(function (img) {
+        img.tabIndex = 0; img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', 'Enlarge: ' + img.alt);
+        function open() { big.src = img.src; big.alt = img.alt; d.classList.toggle('tall', img.closest('.phone') !== null); d.showModal(); }
+        img.addEventListener('click', open);
+        img.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+      });
+      d.addEventListener('click', function () { d.close(); });
+    })();
+  </script>
 </body>
 </html>
