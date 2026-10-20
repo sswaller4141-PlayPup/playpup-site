@@ -13,7 +13,7 @@
   <meta property="og:image" content="https://playpup.app/assets/og-image.png">
   <meta property="og:url" content="https://playpup.app/">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="assets/site.css?v=6">
+  <link rel="stylesheet" href="assets/site.css?v=7">
 </head>
 <body>
   <header class="site-header">
@@ -130,7 +130,14 @@
     <section class="bigger" aria-labelledby="bigger-title">
       <div class="wrap">
         <h2 class="section-title" id="bigger-title">See the Bigger Picture</h2>
-        <p class="section-sub">Every play tells a story. Discover your playtime patterns, celebrate your progress, and see how all those little moments add up.</p>
+        <p class="section-sub">Discover how your playtime adds up over days, months, and years.</p>
+        <!-- A preview of the range control inside each chart (not a working control). -->
+        <div class="range-preview" role="img" aria-label="Each chart can show 7 days for free, or 30 days, 90 days, 1 year and all time with Premium">
+          <p class="range-label"><span class="premium-tag">Premium</span> Explore your full history in every chart</p>
+          <div class="range-pills" aria-hidden="true">
+            <span class="on">7D</span><span>30D</span><span>90D</span><span>1Y</span><span>All Time</span>
+          </div>
+        </div>
         <div class="chart-grid">
           <figure class="chart-card">
             <figcaption><h3>Playtime Over Time</h3><p>Discover how your playtime changes and grows over time.</p></figcaption>
@@ -153,7 +160,10 @@
           </figcaption>
           <img src="assets/charts/records.png?v=1" alt="Personal records: longest session 1 hour 2 minutes, most playtime in one day 2 hours 23 minutes, most in one week 7 hours 49 minutes, longest streak 25 days" width="720" height="770" loading="lazy">
         </figure>
-        <p class="bigger-note">Explore your last 7 days for free. Unlock your complete playtime story with Premium.</p>
+        <div class="bigger-note">
+          <p class="bigger-note-title">Your Playtime Story, From Days to Years.</p>
+          <p>Explore your last 7 days for free. Unlock <span class="nowrap">30-day</span>, <span class="nowrap">90-day</span>, yearly, and lifetime trends with PlayPup Premium.</p>
+        </div>
       </div>
     </section>
 

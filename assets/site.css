@@ -122,7 +122,14 @@ section { padding-block: 36px; }
 .records-card h3 { font-size: 22px; margin-top: 10px; }
 .records-card figcaption p { font-size: 16px; margin-bottom: 0; max-width: 420px; }
 .premium-tag { display: inline-block; font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 99px; color: var(--on-lime); background: var(--lime); }
-.bigger-note { text-align: center; color: var(--cream); font-size: 16.5px; margin: 26px auto 0; max-width: 620px; text-wrap: balance; }
+.bigger-note { text-align: center; margin: 28px auto 0; max-width: 640px; }
+.bigger-note p { margin: 0; color: var(--muted); font-size: 16px; text-wrap: balance; }
+.bigger-note .bigger-note-title { color: var(--cream); font-weight: 800; font-size: 19px; margin-bottom: 6px; }
+.range-preview { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 24px; }
+.range-label { margin: 0; color: var(--cream); font-size: 15.5px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.range-pills { display: flex; padding: 4px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); }
+.range-pills span { padding: 8px clamp(12px, 2.6vw, 20px); border-radius: 99px; font-weight: 800; font-size: 14px; color: var(--muted); white-space: nowrap; }
+.range-pills span.on { background: var(--lime); color: var(--on-lime); }
 @media (max-width: 860px) {
   .chart-grid { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
   .records-card { grid-template-columns: 1fr; max-width: 520px; margin-inline: auto; }
@@ -179,3 +186,4 @@ details p, details ol, details ul { margin-top: 0; }
 .site-footer a { color: var(--muted); margin-right: 16px; }
 .site-footer a:hover { color: var(--ink); }
 
+.nowrap { white-space: nowrap; }
